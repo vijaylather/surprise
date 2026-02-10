@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Favorite Person</title>
+    <title>For My Valentine</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1 class="fade-in">Happy Valentine's Day! ❤️</h1>
-    <p class="message">You make every day feel like a dream. Thank you for being you.</p>
+    <div id="heart-container"></div> <div class="card">
+        <h1 class="title">Happy Valentine's Day! ❤️</h1>
+        <p class="subtitle">To the girl who stole my heart...</p>
+        
+        <div class="button-wrapper">
+            <button id="revealBtn">Tap for a Surprise</button>
+        </div>
 
-    <div class="heart-box">
-        <button id="revealBtn">Click for a Surprise</button>
+        <div id="hiddenMessage" class="hidden">
+            <div class="divider"></div>
+            <p class="final-text">You are my favorite person in every universe. I love you!</p>
+            <p class="ps-message">PS: I built this just for you. (Status: 200 OK)</p>
+        </div>
     </div>
 
-    <div id="hiddenMessage" class="hidden">
-        <p>I love you more than Java likes semi-colons! ☕️</p>
-        <div class="hearts-animation"></div>
-    </div>
-</div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
