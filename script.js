@@ -1,7 +1,19 @@
 document.getElementById('revealBtn').addEventListener('click', function() {
+    // 1. Show the hidden message
     const hiddenSection = document.getElementById('hiddenMessage');
     hiddenSection.style.display = 'block';
+    
+    // 2. Hide the button
     this.style.display = 'none';
+
+    // 3. Play the music
+    const music = document.getElementById('valentineMusic');
+    music.play().catch(error => {
+        console.log("Autoplay was prevented. Clicking the button usually fixes this!");
+    });
+    
+    // 4. Start the heart animation (if not already started)
+    setInterval(createHeart, 300);
 });
 
 // Function to create floating hearts
