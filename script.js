@@ -29,12 +29,18 @@ function injectPhotos() {
         "1Seq5TzfIxQJ0W-ayReWSlU81hZJE9Y0J"
     ];
 
-    driveIds.forEach(id => {
+    driveIds.forEach((id, index) => {
         const img = document.createElement('img');
-        // Using the Thumbnail API for faster loading and privacy
         img.src = `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-        img.alt = "Our Memory";
         img.className = "collage-img";
+
+        // Stagger the reveal of each photo
+        img.style.animationDelay = `${index * 0.3}s`;
+
+        // Assign random rotation variable for the CSS
+        const rot = (Math.random() * 10 - 5) + "deg";
+        img.style.setProperty('--rotation', rot);
+
         container.appendChild(img);
     });
 }
