@@ -21,6 +21,14 @@ function handleCredentialResponse(response) {
 
 // 2. Secure Photo Injection (IDs are only revealed after login)
 function injectPhotos() {
+    for (let i = 0; i < 5; i++) {
+        const cloud = document.createElement('div');
+        cloud.className = 'cloud';
+        cloud.style.top = Math.random() * 100 + "vh";
+        cloud.style.animationDelay = (Math.random() * 20) + "s";
+        document.body.appendChild(cloud);
+    }
+
     const container = document.querySelector('.collage-container');
 
     // Put your Google Drive File IDs here
