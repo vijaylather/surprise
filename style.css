@@ -44,55 +44,18 @@ body {
 .login-card h2 { color: #c9184a; margin-bottom: 15px; }
 .login-card p { color: #800f2f; margin-bottom: 25px; font-size: 0.9rem; }
 
-/* --- Valentine Card --- */
-.card {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    z-index: 10;
-    position: relative;
-}
-
-.title { font-family: 'Dancing Script', cursive; color: #c9184a; font-size: 2.2rem; margin-bottom: 10px; }
-.subtitle { color: #800f2f; margin-bottom: 20px; font-size: 1rem; }
-
-/* --- Buttons & Grouping --- */
-.btn-group {
+/* Center the Google Button */
+.g_id_signin {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-    position: relative;
-    min-height: 50px;
 }
 
-button#revealBtn, .btn-yes, .btn-no {
-    padding: 12px 25px;
-    border-radius: 50px;
-    border: none;
-    font-size: 1rem;
+.error-text {
+    color: #a4133c;
+    font-size: 0.85rem;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-button#revealBtn, .btn-yes {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-no {
-    background: #f8f9fa;
-    color: #c9184a;
-    /* Absolute positioning is required for the runaway effect */
-    position: absolute;
-    z-index: 100;
+    margin-top: 20px;
+    min-height: 20px;
 }
 
 /* --- Photo Collage --- */
@@ -105,30 +68,52 @@ button#revealBtn, .btn-yes {
 
 .collage-img {
     width: 100%;
-    height: 120px;
+    height: 140px;
     object-fit: cover;
     border-radius: 12px;
     border: 3px solid white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    opacity: 0;
-    transform: scale(0.5) translateY(50px);
-    animation: photoDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: transform 0.3s ease;
 }
+
+.collage-img:nth-child(odd) { transform: rotate(-2deg); }
+.collage-img:nth-child(even) { transform: rotate(2deg); }
+
+/* --- Valentine Card --- */
+.card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 85%;
+    max-width: 400px;
+    z-index: 10;
+}
+
+.title { font-family: 'Dancing Script', cursive; color: #c9184a; font-size: 2.5rem; }
+.subtitle { color: #800f2f; margin-bottom: 20px; }
+
+button#revealBtn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hidden { display: none; animation: fadeInUp 1s ease forwards; }
 
 /* --- Animations --- */
-@keyframes photoDrop {
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0) rotate(var(--rotation, 0deg));
-    }
-}
-
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
-.hidden { display: none; animation: fadeInUp 1s ease forwards; }
 
 .heart {
     position: absolute;
@@ -136,7 +121,6 @@ button#revealBtn, .btn-yes {
     user-select: none;
     pointer-events: none;
     animation: float 5s linear infinite;
-    z-index: 5;
 }
 
 @keyframes float {
@@ -144,9 +128,16 @@ button#revealBtn, .btn-yes {
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
 }
 
-.ps-message {
-    font-size: 0.85rem;
-    font-style: italic;
-    color: #c9184a;
-    margin-top: 15px;
+.collage-img {
+    /* ... existing styles ... */
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+    animation: photoDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes photoDrop {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(var(--rotation));
+    }
 }
