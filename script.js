@@ -1,22 +1,11 @@
 // 1. Handle Google Login Response
 function handleCredentialResponse(response) {
     // Decode the Google JWT Token
-    const responsePayload = parseJwt(response.credential);
+    document.getElementById('passwordOverlay').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
 
-    // SECURITY: Enter her exact Gmail address here
-    const authorizedEmail = "vijay17lat@gmail.com";
-
-    if (responsePayload.email === authorizedEmail) {
-        // Unlock Site
-        document.getElementById('passwordOverlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-
-        // Inject Photos and Start Hearts
-        injectPhotos();
-        setInterval(createHeart, 300);
-    } else {
-        document.getElementById('errorMessage').innerText = "Access Denied. This memory is private! 🔒";
-    }
+    injectPhotos();
+    setInterval(createHeart, 300);
 }
 
 // 2. Secure Photo Injection (IDs are only revealed after login)
