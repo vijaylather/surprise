@@ -1,11 +1,20 @@
 // 1. Handle Google Login Response
 function handleCredentialResponse(response) {
-    // Decode the Google JWT Token
-    document.getElementById('passwordOverlay').style.display = 'none';
-    document.getElementById('mainContent').style.display = 'block';
+    const responsePayload = parseJwt(response.credential);
 
-    injectPhotos();
-    setInterval(createHeart, 300);
+        // Create a list of allowed emails
+        const authorizedEmails = ["vijay17lat@gmail.com", "krutikaahirrao2002@gmail.com"];
+
+        // Check if the logged-in email exists in our list
+        if (authorizedEmails.includes(responsePayload.email)) {
+            document.getElementById('passwordOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+
+            injectPhotos();
+            setInterval(createHeart, 300);
+        } else {
+            document.getElementById('errorMessage').innerText = "Access Denied. This memory is private! 🔒";
+        }
 }
 
 // 2. Secure Photo Injection (IDs are only revealed after login)
