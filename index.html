@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Favorite Person</title>
-    <link rel="stylesheet" href="style.css?v=1.5">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="style.css?v=2.0">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -12,9 +13,22 @@
 <div id="passwordOverlay">
     <div class="login-card">
         <h2>🔒 Private Access</h2>
-        <p>Enter our special date to enter (DDMM)</p>
-        <input type="password" id="passInput" placeholder="Enter code..." inputmode="numeric">
-        <button onclick="checkPassword()">Unlock</button>
+        <p>Please sign in with your Google Account to unlock this memory.</p>
+
+        <div id="g_id_onload"
+             data-client_id="104988593868-o5g90qtgvs6ggtd630je2gmh0dgpdv13.apps.googleusercontent.com"
+             data-callback="handleCredentialResponse"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="signin_with"
+             data-shape="pill"
+             data-logo_alignment="left">
+        </div>
+
         <p id="errorMessage" class="error-text"></p>
     </div>
 </div>
@@ -32,12 +46,8 @@
 
         <div id="hiddenMessage" class="hidden">
             <div class="divider"></div>
-            <div class="collage-container">
-                <img src="photo1.jpeg" alt="Our Memory" class="collage-img">
-                <img src="photo2.jpeg" alt="Our Memory" class="collage-img">
-                <img src="photo3.jpeg" alt="Our Memory" class="collage-img">
-                <img src="photo4.jpeg" alt="Our Memory" class="collage-img">
-            </div>
+            <div class="collage-container"></div>
+
             <p class="final-text">You are my favorite person in every universe. I love you!</p>
             <p class="ps-message">PS: I built this just for you.</p>
         </div>
@@ -49,6 +59,6 @@
     Your browser does not support the audio element.
 </audio>
 
-<script src="script.js?v=1.5"></script>
+<script src="script.js?v=2.0"></script>
 </body>
 </html>

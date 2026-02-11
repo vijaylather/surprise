@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-/* --- Password Overlay Styles --- */
+/* --- Secure Login Overlay --- */
 #passwordOverlay {
     position: fixed;
     top: 0;
@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensures it stays on top */
+    z-index: 9999;
 }
 
 .login-card {
@@ -37,48 +37,49 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 80%;
+    width: 85%;
     max-width: 350px;
 }
 
-.login-card h2 {
-    color: #c9184a;
-    margin-bottom: 10px;
-}
+.login-card h2 { color: #c9184a; margin-bottom: 15px; }
+.login-card p { color: #800f2f; margin-bottom: 25px; font-size: 0.9rem; }
 
-#passInput {
-    width: 100%;
-    padding: 12px;
-    margin: 20px 0;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 77, 109, 0.3);
-    background: rgba(255, 255, 255, 0.5);
-    font-size: 1.2rem;
-    text-align: center;
-    box-sizing: border-box;
-    outline: none;
+/* Center the Google Button */
+.g_id_signin {
+    display: flex;
+    justify-content: center;
 }
 
 .error-text {
     color: #a4133c;
     font-size: 0.85rem;
     font-weight: bold;
-    height: 20px; /* Prevents layout jump when error appears */
+    margin-top: 20px;
+    min-height: 20px;
 }
 
-/* --- Shake Animation for Wrong Password --- */
-.shake {
-    animation: shake 0.4s ease-in-out;
+/* --- Photo Collage --- */
+.collage-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 25px 0;
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); }
-    75% { transform: translateX(-10px); }
+.collage-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-/* --- Main Content Card Styles --- */
+.collage-img:nth-child(odd) { transform: rotate(-2deg); }
+.collage-img:nth-child(even) { transform: rotate(2deg); }
+
+/* --- Valentine Card --- */
 .card {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(10px);
@@ -92,16 +93,10 @@ body {
     z-index: 10;
 }
 
-.title {
-    font-family: 'Dancing Script', cursive;
-    color: #c9184a;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
+.title { font-family: 'Dancing Script', cursive; color: #c9184a; font-size: 2.5rem; }
+.subtitle { color: #800f2f; margin-bottom: 20px; }
 
-.subtitle { color: #800f2f; font-weight: 300; }
-
-button {
+button#revealBtn {
     background: var(--primary);
     color: white;
     border: none;
@@ -109,19 +104,17 @@ button {
     border-radius: 50px;
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
     transition: 0.3s;
 }
 
-button:hover { transform: scale(1.05); background: var(--secondary); }
+.hidden { display: none; animation: fadeInUp 1s ease forwards; }
 
-.hidden { display: none; margin-top: 20px; animation: fadeInUp 1s ease forwards; }
+/* --- Animations --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-.final-text { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #a4133c; }
-
-.ps-message { font-size: 0.7rem; color: #590d22; opacity: 0.7; margin-top: 15px; }
-
-/* --- Heart Animation --- */
 .heart {
     position: absolute;
     color: rgba(255, 77, 109, 0.6);
@@ -133,41 +126,4 @@ button:hover { transform: scale(1.05); background: var(--secondary); }
 @keyframes float {
     0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.collage-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 10px;
-    margin: 20px 0;
-    padding: 10px;
-}
-
-.collage-img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover; /* Keeps faces from looking stretched */
-    border-radius: 10px;
-    border: 3px solid white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-/* Adds a cute scrapbook tilt to alternating photos */
-.collage-img:nth-child(odd) {
-    transform: rotate(-3deg);
-}
-
-.collage-img:nth-child(even) {
-    transform: rotate(3deg);
-}
-
-.collage-img:hover {
-    transform: scale(1.1) rotate(0deg);
-    z-index: 20;
 }
