@@ -1,42 +1,66 @@
+// 1. Password Verification Logic
+function checkPassword() {
+    const input = document.getElementById('passInput').value;
+    const loginCard = document.querySelector('.login-card');
+    
+    // Replace 'MTQwMg==' with your Base64 encoded date
+    // Example: btoa("1402") is "MTQwMg=="
+    const encodedPass = "MTQwMg=="; 
+
+    if (btoa(input) === encodedPass) {
+        // Access Granted
+        document.getElementById('passwordOverlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        
+        // Start the background hearts only after unlocking
+        setInterval(createHeart, 300);
+    } else {
+        // Access Denied - Shake Effect
+        document.getElementById('errorMessage').innerText = "Incorrect code. Try again! ❤️";
+        loginCard.classList.add('shake');
+        
+        // Remove shake class after animation so it can be re-triggered
+        setTimeout(() => {
+            loginCard.classList.remove('shake');
+        }, 400);
+    }
+}
+
+// 2. Valentine Reveal Logic
 document.getElementById('revealBtn').addEventListener('click', function() {
-    // 1. Show the hidden message
+    // Show the hidden message
     const hiddenSection = document.getElementById('hiddenMessage');
     hiddenSection.style.display = 'block';
     
-    // 2. Hide the button
+    // Hide the button
     this.style.display = 'none';
 
-    // 3. Play the music
+    // Play the music
     const music = document.getElementById('valentineMusic');
     music.play().catch(error => {
-        console.log("Autoplay was prevented. Clicking the button usually fixes this!");
+        console.log("Playback prevented: ", error);
     });
-    
-    // 4. Start the heart animation (if not already started)
-    setInterval(createHeart, 300);
 });
 
-// Function to create floating hearts
+// 3. Heart Creation Logic
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     
-    // Pick a random heart icon
     const icons = ['❤️', '💖', '💕', '💗', '🌸'];
     heart.innerText = icons[Math.floor(Math.random() * icons.length)];
     
-    // Random position and size
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // 3-5 seconds
+    heart.style.animationDuration = Math.random() * 2 + 3 + "s";
     heart.style.fontSize = Math.random() * 20 + 10 + "px";
     
-    document.getElementById('heart-container').appendChild(heart);
+    // Ensure heart-container exists in your HTML
+    const container = document.getElementById('heart-container');
+    if (container) {
+        container.appendChild(heart);
+    }
     
-    // Remove heart after animation finishes
     setTimeout(() => {
         heart.remove();
     }, 5000);
 }
-
-// Generate a heart every 300ms
-setInterval(createHeart, 300);
