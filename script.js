@@ -3,7 +3,7 @@ function handleCredentialResponse(response) {
     const responsePayload = parseJwt(response.credential);
 
         // Create a list of allowed emails
-        const authorizedEmails = ["vijay17lat@gmail.com", "krutikaahirrao2002@gmail.com","vijaylather1999@gmail.com"];
+        const authorizedEmails = ["vijay17lat@gmail.com", "krutikaahirrao2002@gmail.com","vijaylather1999@gmail.com","ankurnagpal97@gmail.com"];
 
         // Check if the logged-in email exists in our list
         if (authorizedEmails.includes(responsePayload.email)) {
